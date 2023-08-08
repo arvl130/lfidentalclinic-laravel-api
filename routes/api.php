@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ReminderController;
 use Illuminate\Http\Request;
@@ -27,3 +28,12 @@ Route::delete("/messages/{uid}/delete", [MessageController::class, "destroy"]);
 
 Route::get("/reminders", [ReminderController::class, "show"]);
 Route::post("/reminders", [ReminderController::class, "update"]);
+
+Route::get(
+    "/appointments/{year}/{month}",
+    [AppointmentController::class, "indexYearMonth"]
+);
+Route::get(
+    "/appointments/requesting-procedure-access",
+    [AppointmentController::class, "indexRequestingProcedureAccess"]
+);
