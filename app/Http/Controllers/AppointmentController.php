@@ -13,8 +13,8 @@ class AppointmentController extends Controller
     {
         // TODO: Validate if year and month is numeric.
         $monthInUnixSeconds = DateTime::createFromFormat(
-            "Y-m-d",
-            "{$year}-{$month}-1",
+            "Y-m-d h:i",
+            "{$year}-{$month}-1 00:00",
             new DateTimeZone('Asia/Manila')
         )->getTimestamp();
 
@@ -22,7 +22,36 @@ class AppointmentController extends Controller
 
         return [
             "message" => "List of appointments for {$year}-{$month}",
-            "payload" => $appointments
+            "payload" => $appointments->map(function ($appointment) {
+                $procedureVisible = "requesting";
+                if ($appointment->procedure_visible === "Yes") {
+                    $procedureVisible = true;
+                } else if ($appointment->procedure_visible === "No") {
+                    $procedureVisible = false;
+                }
+
+                $attended = "pending";
+                if ($appointment->attended === "Yes") {
+                    $attended = true;
+                } else if ($appointment->attended === "No") {
+                    $attended = false;
+                }
+
+                return [
+                    "timeslot" => $appointment->timeslot,
+                    "month" => $appointment->month,
+                    "patientUid" => $appointment->patient_uid,
+                    "attended" => $attended,
+                    "price" => floatval($appointment->price),
+                    "amountPaid" => floatval($appointment->amount_paid),
+                    "service" => $appointment->service,
+                    "status" => $appointment->status,
+                    "procedure" => $appointment->procedure,
+                    "procedureVisible" => $procedureVisible,
+                    "createdAt" => $appointment->created_at,
+                    "updatedAt" => $appointment->updated_at,
+                ];
+            })
         ];
     }
 
@@ -32,7 +61,36 @@ class AppointmentController extends Controller
 
         return [
             "message" => "List of appointments requesting procedure access",
-            "payload" => $appointments
+            "payload" => $appointments->map(function ($appointment) {
+                $procedureVisible = "requesting";
+                if ($appointment->procedure_visible === "Yes") {
+                    $procedureVisible = true;
+                } else if ($appointment->procedure_visible === "No") {
+                    $procedureVisible = false;
+                }
+
+                $attended = "pending";
+                if ($appointment->attended === "Yes") {
+                    $attended = true;
+                } else if ($appointment->attended === "No") {
+                    $attended = false;
+                }
+
+                return [
+                    "timeslot" => $appointment->timeslot,
+                    "month" => $appointment->month,
+                    "patientUid" => $appointment->patient_uid,
+                    "attended" => $attended,
+                    "price" => floatval($appointment->price),
+                    "amountPaid" => floatval($appointment->amount_paid),
+                    "service" => $appointment->service,
+                    "status" => $appointment->status,
+                    "procedure" => $appointment->procedure,
+                    "procedureVisible" => $procedureVisible,
+                    "createdAt" => $appointment->created_at,
+                    "updatedAt" => $appointment->updated_at,
+                ];
+            })
         ];
     }
 }
