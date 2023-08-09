@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\TimeslotController;
@@ -59,3 +60,12 @@ Route::get(
     "/timeslots/unavailable/{year}/{month}",
     [TimeslotController::class, "index"]
 );
+
+Route::post("/auth/register/admin", [AuthController::class, "registerAdmin"]);
+Route::post("/auth/register", [AuthController::class, "registerPatient"]);
+Route::post("/auth/login", [AuthController::class, "login"]);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get("/auth/user", [AuthController::class, "showProfile"]);
+    Route::post("/auth/user/name", [AuthController::class, "updateUsername"]);
+    Route::delete("/auth/logout", [AuthController::class, "logout"]);
+});

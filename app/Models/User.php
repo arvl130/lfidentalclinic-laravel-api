@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'account_type',
+        'is_archived',
+        'filled_in_medical_chart',
     ];
 
     /**
