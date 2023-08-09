@@ -16,7 +16,7 @@ class AppointmentController extends Controller
             "Y-m-d",
             "{$year}-{$month}-1",
             new DateTimeZone('Asia/Manila')
-        );
+        )->getTimestamp();
 
         $appointments = Appointment::where("month", $monthInUnixSeconds)->get();
 
