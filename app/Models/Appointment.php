@@ -9,4 +9,5 @@ class Appointment extends Model
 {
     use HasFactory;
     protected $primaryKey = "timeslot";
+    protected $fillable = ["timeslot", "month", "patient_uid", "service"];
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ReminderController;
+use App\Http\Controllers\TimeslotController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,4 +37,25 @@ Route::get(
 Route::get(
     "/appointments/requesting-procedure-access",
     [AppointmentController::class, "indexRequestingProcedureAccess"]
+);
+
+Route::get(
+    "/timeslots/appointments",
+    [TimeslotController::class, "store"]
+);
+Route::delete(
+    "/timeslots/appointments/{slotSeconds}",
+    [TimeslotController::class, "destroy"]
+);
+Route::get(
+    "/timeslots/appointments/closed",
+    [TimeslotController::class, "storeClosed"]
+);
+Route::delete(
+    "/timeslots/appointments/closed/{slotSeconds}",
+    [TimeslotController::class, "destroyClosed"]
+);
+Route::get(
+    "/timeslots/unavailable/{year}/{month}",
+    [TimeslotController::class, "index"]
 );

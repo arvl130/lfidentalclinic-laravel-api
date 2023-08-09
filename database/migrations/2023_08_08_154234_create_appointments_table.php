@@ -15,13 +15,13 @@ return new class extends Migration
             $table->bigInteger("timeslot");
             $table->bigInteger("month");
             $table->string("patient_uid");
-            $table->enum("attended", ["Yes", "No", "Pending"]);
-            $table->decimal("price", 10, 2);
-            $table->decimal("amount_paid", 10, 2);
+            $table->enum("attended", ["Yes", "No", "Pending"])->default("Pending");
+            $table->decimal("price", 10, 2)->default(0);
+            $table->decimal("amount_paid", 10, 2)->default(0);
             $table->string("service");
             $table->enum("status", ["Paid", "Unpaid"])->nullable();
-            $table->string("procedure", 5000);
-            $table->enum("procedure_visible", ["Yes", "No", "Requesting"]);
+            $table->string("procedure", 5000)->default("");
+            $table->enum("procedure_visible", ["Yes", "No", "Requesting"])->default("No");
             $table->timestamps();
             $table->primary("timeslot");
         });
