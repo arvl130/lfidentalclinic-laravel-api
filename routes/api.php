@@ -6,6 +6,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\TimeslotController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -75,3 +76,7 @@ Route::get("/users", [UserController::class, "index"]);
 Route::get("/users/search/by-name/{nameFilter}", [UserController::class, "search"]);
 Route::get("/users/archived", [UserController::class, "indexArchived"]);
 Route::get("/users/archived/search/by-name/{nameFilter}", [UserController::class, "searchArchived"]);
+
+Route::get("/users/{patientUid}", [UserProfileController::class, "show"]);
+Route::post("/users/{patientUid}/archived", [UserProfileController::class, "archive"]);
+Route::delete("/users/{patientUid}/archived", [UserProfileController::class, "unarchive"]);
