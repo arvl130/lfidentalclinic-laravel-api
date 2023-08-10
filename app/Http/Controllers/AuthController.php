@@ -124,7 +124,10 @@ class AuthController extends Controller
             "payload" => [
                 "uid" => $user->id,
                 "email" => $user->email,
-                "fullName" => $user->name
+                "displayName" => $user->name,
+                "accountType" => $user->account_type,
+                "filledInMedicalChart" => $user->filled_in_medical_chart,
+                "isArchived" => $user->is_archived,
             ],
         ];
     }

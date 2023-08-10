@@ -16,7 +16,14 @@ class UserController extends Controller
         return [
             "message" => "List of users",
             "payload" => [
-                "users" => $users
+                "users" => $users->map(fn ($user) => [
+                    "uid" => $user->id,
+                    "email" => $user->email,
+                    "displayName" => $user->name,
+                    "accountType" => $user->account_type,
+                    "filledInMedicalChart" => $user->filled_in_medical_chart,
+                    "isArchived" => $user->is_archived,
+                ])
             ]
         ];
     }
@@ -28,7 +35,14 @@ class UserController extends Controller
         return [
             "message" => "List of users matched",
             "payload" => [
-                "users" => $users
+                "users" => $users->map(fn ($user) => [
+                    "uid" => $user->id,
+                    "email" => $user->email,
+                    "displayName" => $user->name,
+                    "accountType" => $user->account_type,
+                    "filledInMedicalChart" => $user->filled_in_medical_chart,
+                    "isArchived" => $user->is_archived,
+                ])
             ]
         ];
     }
@@ -42,7 +56,14 @@ class UserController extends Controller
         return [
             "message" => "List of archived users",
             "payload" => [
-                "users" => $users
+                "users" => $users->map(fn ($user) => [
+                    "uid" => $user->id,
+                    "email" => $user->email,
+                    "displayName" => $user->name,
+                    "accountType" => $user->account_type,
+                    "filledInMedicalChart" => $user->filled_in_medical_chart,
+                    "isArchived" => $user->is_archived,
+                ])
             ]
         ];
     }
@@ -54,7 +75,14 @@ class UserController extends Controller
         return [
             "message" => "List of archived users matched",
             "payload" => [
-                "users" => $users
+                "users" => $users->map(fn ($user) => [
+                    "uid" => $user->id,
+                    "email" => $user->email,
+                    "displayName" => $user->name,
+                    "accountType" => $user->account_type,
+                    "filledInMedicalChart" => $user->filled_in_medical_chart,
+                    "isArchived" => $user->is_archived,
+                ])
             ]
         ];
     }
