@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\TimeslotController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -69,3 +70,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post("/auth/user/name", [AuthController::class, "updateUsername"]);
     Route::delete("/auth/logout", [AuthController::class, "logout"]);
 });
+
+Route::get("/users", [UserController::class, "index"]);
+Route::get("/users/search/by-name/{nameFilter}", [UserController::class, "search"]);
+Route::get("/users/archived", [UserController::class, "indexArchived"]);
+Route::get("/users/archived/search/by-name/{nameFilter}", [UserController::class, "searchArchived"]);

@@ -44,5 +44,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_archived' => 'boolean',
+        'filled_in_medical_chart' => 'boolean'
     ];
 }
