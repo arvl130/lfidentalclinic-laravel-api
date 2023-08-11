@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->bigInteger("timeslot");
             $table->bigInteger("month");
-            $table->string("patient_uid");
+            $table->bigInteger("patient_uid");
             $table->enum("attended", ["Yes", "No", "Pending"])->default("Pending");
             $table->decimal("price", 10, 2)->default(0);
             $table->decimal("amount_paid", 10, 2)->default(0);
