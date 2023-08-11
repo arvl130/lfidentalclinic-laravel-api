@@ -17,7 +17,7 @@ class UserController extends Controller
             "message" => "List of users",
             "payload" => [
                 "users" => $users->map(fn ($user) => [
-                    "uid" => $user->id,
+                    "uid" => $user->uid,
                     "email" => $user->email,
                     "displayName" => $user->name,
                     "accountType" => $user->account_type,
@@ -36,7 +36,7 @@ class UserController extends Controller
             "message" => "List of users matched",
             "payload" => [
                 "users" => $users->map(fn ($user) => [
-                    "uid" => $user->id,
+                    "uid" => $user->uid,
                     "email" => $user->email,
                     "displayName" => $user->name,
                     "accountType" => $user->account_type,
@@ -57,7 +57,7 @@ class UserController extends Controller
             "message" => "List of archived users",
             "payload" => [
                 "users" => $users->map(fn ($user) => [
-                    "uid" => $user->id,
+                    "uid" => $user->uid,
                     "email" => $user->email,
                     "displayName" => $user->name,
                     "accountType" => $user->account_type,
@@ -76,7 +76,7 @@ class UserController extends Controller
             "message" => "List of archived users matched",
             "payload" => [
                 "users" => $users->map(fn ($user) => [
-                    "uid" => $user->id,
+                    "uid" => $user->uid,
                     "email" => $user->email,
                     "displayName" => $user->name,
                     "accountType" => $user->account_type,

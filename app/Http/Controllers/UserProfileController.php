@@ -20,7 +20,7 @@ class UserProfileController extends Controller
         return [
             "message" => "User profile retrieved",
             "payload" => [
-                "uid" => $user->id,
+                "uid" => $user->uid,
                 "email" => $user->email,
                 "displayName" => $user->name,
                 "accountType" => $user->account_type,
@@ -46,7 +46,7 @@ class UserProfileController extends Controller
         return [
             "message" => "Patient is now archived.",
             "payload" => [
-                "uid" => $user->id,
+                "uid" => $user->uid,
                 "email" => $user->email,
                 "displayName" => $user->name,
                 "accountType" => $user->account_type,
@@ -72,7 +72,7 @@ class UserProfileController extends Controller
         return [
             "message" => "Patient is now unarchived.",
             "payload" => [
-                "uid" => $user->id,
+                "uid" => $user->uid,
                 "email" => $user->email,
                 "displayName" => $user->name,
                 "accountType" => $user->account_type,

@@ -84,7 +84,7 @@ class AuthController extends Controller
             "fullName" => "required|string",
         ]);
 
-        $user = User::find($request->user()->id);
+        $user = User::find($request->user()->uid);
 
         if (!$user) {
             return [
@@ -100,7 +100,7 @@ class AuthController extends Controller
         return [
             "message" => "User name updated.",
             "payload" => [
-                "uid" => $user->id,
+                "uid" => $user->uid,
                 "email" => $user->email,
                 "fullName" => $user->name
             ],
@@ -109,7 +109,7 @@ class AuthController extends Controller
 
     public function showProfile(Request $request)
     {
-        $user = User::find($request->user()->id);
+        $user = User::find($request->user()->uid);
 
         if (!$user) {
             return [
@@ -122,7 +122,7 @@ class AuthController extends Controller
         return [
             "message" => "User profile retrieved.",
             "payload" => [
-                "uid" => $user->id,
+                "uid" => $user->uid,
                 "email" => $user->email,
                 "displayName" => $user->name,
                 "accountType" => $user->account_type,

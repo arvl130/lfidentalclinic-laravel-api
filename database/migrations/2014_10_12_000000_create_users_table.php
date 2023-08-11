@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->uuid("uid")->primary();
             $table->enum('account_type', ["patient", "admin"]);
             $table->boolean('filled_in_medical_chart')->default(false);
             $table->boolean('is_archived')->default(false);

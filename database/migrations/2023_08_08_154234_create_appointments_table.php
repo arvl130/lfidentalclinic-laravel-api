@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('appointments', function (Blueprint $table) {
-            $table->bigInteger("timeslot");
+            $table->bigInteger("timeslot")->primary();
             $table->bigInteger("month");
-            $table->bigInteger("patient_uid");
+            $table->uuid('patient_uid');
+            $table->foreign("patient_uid")->references("uid")->on("users");
             $table->enum("attended", ["Yes", "No", "Pending"])->default("Pending");
             $table->decimal("price", 10, 2)->default(0);
             $table->decimal("amount_paid", 10, 2)->default(0);
@@ -23,7 +24,6 @@ return new class extends Migration
             $table->string("procedure", 5000)->default("");
             $table->enum("procedure_visible", ["Yes", "No", "Requesting"])->default("No");
             $table->timestamps();
-            $table->primary("timeslot");
         });
     }
 

@@ -55,7 +55,7 @@ class UserAppointmentController extends Controller
             ], 404);
         }
 
-        if ($appointment->patient_uid !== intval($patientUid)) {
+        if ($appointment->patient_uid !== $patientUid) {
             return response([
                 "message" => "No such appointment"
             ], 404);
