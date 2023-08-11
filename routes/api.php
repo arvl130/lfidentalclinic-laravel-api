@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserAppointmentController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MessageController;
@@ -80,3 +81,54 @@ Route::get("/users/archived/search/by-name/{nameFilter}", [UserController::class
 Route::get("/users/{patientUid}", [UserProfileController::class, "show"]);
 Route::post("/users/{patientUid}/archived", [UserProfileController::class, "archive"]);
 Route::delete("/users/{patientUid}/archived", [UserProfileController::class, "unarchive"]);
+
+Route::get("/users/{patientUid}/appointments", [UserAppointmentController::class, "index"]);
+Route::put("/users/{patientUid}/appointments", [UserAppointmentController::class, "store"]);
+Route::post(
+    "/users/{patientUid}/appointments/{slotSeconds}/payment",
+    [UserAppointmentController::class, "updatePayment"]
+);
+Route::delete(
+    "/users/{patientUid}/appointments/{slotSeconds}/cancel",
+    [UserAppointmentController::class, "cancel"]
+);
+Route::delete(
+    "/users/{patientUid}/appointments/{slotSeconds}/delete",
+    [UserAppointmentController::class, "destroy"]
+);
+Route::put(
+    "/users/{patientUid}/appointments/{slotSeconds}/attended",
+    [UserAppointmentController::class, "updateSetAttended"]
+);
+Route::patch(
+    "/users/{patientUid}/appointments/{slotSeconds}/attended",
+    [UserAppointmentController::class, "updateSetNotAttended"]
+);
+Route::delete(
+    "/users/{patientUid}/appointments/{slotSeconds}/attended",
+    [UserAppointmentController::class, "updateSetPendingAttended"]
+);
+Route::get(
+    "/users/{patientUid}/appointments/{slotSeconds}/procedure",
+    [UserAppointmentController::class, "showProcedure"]
+);
+Route::patch(
+    "/users/{patientUid}/appointments/{slotSeconds}/procedure",
+    [UserAppointmentController::class, "updateProcedure"]
+);
+Route::put(
+    "/users/{patientUid}/appointments/{slotSeconds}/procedure/access",
+    [UserAppointmentController::class, "updateSetProcedureAccessAllowed"]
+);
+Route::delete(
+    "/users/{patientUid}/appointments/{slotSeconds}/procedure/access",
+    [UserAppointmentController::class, "updateSetProcedureAccessNotAllowed"]
+);
+Route::put(
+    "/users/{patientUid}/appointments/{slotSeconds}/procedure/request-access",
+    [UserAppointmentController::class, "updateRequestProcedureAccess"]
+);
+Route::delete(
+    "/users/{patientUid}/appointments/{slotSeconds}/procedure/request-access",
+    [UserAppointmentController::class, "updateCancelRequestProcedureAccess"]
+);
