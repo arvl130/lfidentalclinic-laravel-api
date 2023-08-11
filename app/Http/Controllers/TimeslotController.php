@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Common\Helpers;
 use App\Models\Appointment;
 use DateTime;
 use DateTimeZone;
@@ -61,6 +62,12 @@ class TimeslotController extends Controller
         }
 
         $appointment->delete();
+        $monthInUnixSeconds = Helpers::getMonthInUnixSeconds($slotSeconds);
+
+        DB::table('reservations')->where([
+            "month" => $monthInUnixSeconds,
+            "timeslot" => $slotSeconds
+        ])->delete();
 
         $procedureVisible = "requesting";
         if ($appointment->procedure_visible === "Yes") {
