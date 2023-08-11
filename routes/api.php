@@ -7,7 +7,9 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\TimeslotController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserDentalChartController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\UserSignatureController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -131,4 +133,54 @@ Route::put(
 Route::delete(
     "/users/{patientUid}/appointments/{slotSeconds}/procedure/request-access",
     [UserAppointmentController::class, "updateCancelRequestProcedureAccess"]
+);
+
+Route::get(
+    "/users/{patientUid}/signatures/patient",
+    [UserSignatureController::class, "showPatient"]
+);
+Route::patch(
+    "/users/{patientUid}/signatures/patient",
+    [UserSignatureController::class, "updatePatient"]
+);
+Route::get(
+    "/users/{patientUid}/signatures/guardian",
+    [UserSignatureController::class, "showGuardian"]
+);
+Route::patch(
+    "/users/{patientUid}/signatures/guardian",
+    [UserSignatureController::class, "updateGuardian"]
+);
+
+Route::get(
+    "/users/{patientUid}/charts/medical-chart/filled-in",
+    [UserDentalChartController::class, "showFilledIn"]
+);
+Route::post(
+    "/users/{patientUid}/charts/medical-chart/filled-in",
+    [UserDentalChartController::class, "updateFilledIn"]
+);
+Route::get(
+    "/users/{patientUid}/charts/medical-chart",
+    [UserDentalChartController::class, "showMedicalChart"]
+);
+Route::patch(
+    "/users/{patientUid}/charts/medical-chart",
+    [UserDentalChartController::class, "updateMedicalChart"]
+);
+Route::get(
+    "/users/{patientUid}/charts/dental-chart",
+    [UserDentalChartController::class, "showDentalChart"]
+);
+Route::patch(
+    "/users/{patientUid}/charts/dental-chart",
+    [UserDentalChartController::class, "updateDentalChart"]
+);
+Route::get(
+    "/users/{patientUid}/charts/deciduous-chart",
+    [UserDentalChartController::class, "showDeciduousChart"]
+);
+Route::patch(
+    "/users/{patientUid}/charts/deciduous-chart",
+    [UserDentalChartController::class, "updateDeciduousChart"]
 );
