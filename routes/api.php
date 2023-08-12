@@ -8,6 +8,7 @@ use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\TimeslotController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserDentalChartController;
+use App\Http\Controllers\UserFormController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UserSignatureController;
 use Illuminate\Http\Request;
@@ -183,4 +184,21 @@ Route::get(
 Route::patch(
     "/users/{patientUid}/charts/deciduous-chart",
     [UserDentalChartController::class, "updateDeciduousChart"]
+);
+
+Route::get(
+    "/users/{patientUid}/forms/consent",
+    [UserFormController::class, "showConsentForm"]
+);
+Route::patch(
+    "/users/{patientUid}/forms/consent",
+    [UserFormController::class, "updateConsentForm"]
+);
+Route::get(
+    "/users/{patientUid}/forms/assessment",
+    [UserFormController::class, "showAssessmentForm"]
+);
+Route::patch(
+    "/users/{patientUid}/forms/assessment",
+    [UserFormController::class, "updateAssessmentForm"]
 );
